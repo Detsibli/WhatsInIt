@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What's In It | Create a Recipe</title>
+</head>
+<body>
+  <h1>Create a Recipe</h1>
+
+  <form action="/create" method="POST">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required>
+    </div>
+    <div>
+      <label for="ingredients">Ingredients:</label>
+      <textarea name="ingredients" required></textarea>
+    </div>
+    <div>
+      <label for="instructions">Instructions:</label>
+      <textarea name="instructions" required></textarea>
+    </div>
+    <div>
+      <label for="is_alcoholic">Contains Alcohol:</label>
+      <input type="checkbox" name="is_alcoholic">
+    </div>
+    <div>
+      <button type="submit">Create Recipe</button>
+    </div>
+  </form>
+
+  <button><a href="javascript:history.back()">Back</a></button>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>What's In It | Search Results</title>
+</head>
+
+<body>
+  <form action="/search" method="get">
+    <label for="q">Search:</label>
+    <input type="text" id="q" name="q" value="<%= q %>">
+    <br>
+    <label for="nameFilter">By Name only:</label>
+    <input type="text" id="nameFilter" name="nameFilter" value="<%= nameFilter %>">
+    <br>
+    <label for="ingredientFilter">By Ingredient only:</label>
+    <input type="text" id="ingredientFilter" name="ingredientFilter" value="<%= ingredientFilter %>">
+    <br>
+    <label for="alcoholicFilter">Contains Alcohol:</label>
+    <select id="alcoholicFilter" name="alcoholicFilter">
+      <option value="">All</option>
+      <option value="1" <%= alcoholicFilter === '1' ? 'selected' : '' %>>Yes</option>
+      <option value="0" <%= alcoholicFilter === '0' ? 'selected' : '' %>>No</option>
+    </select>
+    <br>
+    <button type="submit">Search</button>
+  </form>
+
+  <h2>Here is what we found...</h2>
+
+  <% if (recipes.length > 0) { %>
+    <ul>
+      <% recipes.forEach(recipe => { %>
+        <li>
+          <h2><%= recipe.name %></h2>
+          <p><%= recipe.description %></p>
+          <p><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
+          <p><strong>Instructions:</strong> <%= recipe.instructions %></p>
+          <p><strong>Contains Alcohol?</strong> <%= recipe.is_alcoholic ? 'Yes' : 'No' %></p>
+        </li>
+      <% }) %>
+    </ul>
+
+    <% if (hasMore) { %>
+      <a href="/search?q=<%= q %>&nameFilter=<%= nameFilter %>&ingredientFilter=<%= ingredientFilter %>&alcoholicFilter=<%= alcoholicFilter %>&offset=<%= offset + limit %>">More results</a>
+    <% } %>
+  <% } else { %>
+    <p>No results found</p>
+  <% } %>
+
+  <button><a href="javascript:history.back()">Back</a></button>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What's In It | <%= recipe ? recipe.name : "" %></title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <% if (recipe) { %>
+    <h2>What's it called...?</h2>
+    <h1><%= recipe.name %>
+      <button id="loveit" type="button">Love it!<span id="loveit-count"></span></button>
+    </h1>
+
+    <h2>What is in it...?</h2>
+    <p><%= recipe.ingredients %></p>
+
+    <h2>How do you make it...?</h2>
+    <p><%= recipe.instructions %> </p>
+
+    <h2>Does it contain Alcohol...?</h2>
+    <% if (recipe.is_alcoholic == 1) { %>
+      <p>Yes</p>
+    <% } else { %>
+      <p>No</p>
+    <% } %>
+
+    <button><a href="javascript:history.back()">Back</a></button>
+  <% } else { %>
+    <h1>Recipe not found</h1>
+  <% } %>
+  
+  <script>
+    $(document).ready(function() {
+      $('#loveit').on('click', function() {
+        var recipeId = '<%= recipe.id %>';
+        $.ajax({
+          url: recipeId + '/love/',
+          type: 'POST',
+          success: function(result) {
+            $('#loveit').text('You and ' + result + ' loved it!');
+            setTimeout(function() {
+              $('#loveit').text('Love it!');
+            }, 5000);
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
