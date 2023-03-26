@@ -19,6 +19,7 @@
     <div class="container text-center">
       <% if (recipe) { %>
         <h1 class="mt-4">What's it called...?</h1>
+        <hr>
         <h2><%= recipe.name %>
           <button id="loveit" type="button" class="btn btn-danger ml-3" data-toggle="tooltip" data-placement="right"><i class="bi bi-heart-fill"></i></button>        
         </h2>
@@ -45,9 +46,10 @@
     <br>
   
     <div class="text-center">
-      <a href="mailto:?subject=Check out this recipe&amp;body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at recipeLink " class="btn btn-outline-warning btn-sm"><i class="bi bi-envelope"></i> Share via Email</a>
-      <a href="sms:?body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at recipeLink " class="btn btn-outline-warning btn-sm"><i class="bi bi-chat-dots"></i> Share via SMS</a>
+      <a href="mailto:?subject=Check out this recipe&amp;body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at What's In It?" class="btn btn-outline-warning btn-sm"><i class="bi bi-envelope"></i> Share via Email</a>
+      <a href="sms:?body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at What's In It?" class="btn btn-outline-warning btn-sm"><i class="bi bi-chat-dots"></i> Share via SMS</a>
     </div>
+    
 
     <hr>
 
