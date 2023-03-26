@@ -1,54 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>What's In It | <%= recipe ? recipe.name : "" %></title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <% if (recipe) { %>
-    <h2>What's it called...?</h2>
-    <h1><%= recipe.name %>
-      <button id="loveit" type="button">Love it!<span id="loveit-count"></span></button>
-    </h1>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= recipe.name %> | What's In It?</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      #Filter-label {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <% if (recipe) { %>
+        <h1 class="mt-4">What's it called...?</h1>
+        <h2><%= recipe.name %>
+          <button id="loveit" type="button" class="btn btn-danger ml-3" data-toggle="tooltip" data-placement="right"><i class="bi bi-heart-fill"></i></button>        
+        </h2>
 
-    <h2>What is in it...?</h2>
-    <p><%= recipe.ingredients %></p>
+        <h2 class="mt-4">What is in it...?</h2>
+        <p><%= recipe.ingredients %></p>
 
-    <h2>How do you make it...?</h2>
-    <p><%= recipe.instructions %> </p>
+        <h2 class="mt-4">How do you make it...?</h2>
+        <p><%= recipe.instructions %> </p>
 
-    <h2>Does it contain Alcohol...?</h2>
-    <% if (recipe.is_alcoholic == 1) { %>
-      <p>Yes</p>
-    <% } else { %>
-      <p>No</p>
-    <% } %>
+        <h2 class="mt-4">Does it contain Alcohol...?</h2>
+        <% if (recipe.is_alcoholic == 1) { %>
+          <p>Yes</p>
+        <% } else { %>
+          <p>No</p>
+        <% } %>
 
-    <button><a href="javascript:history.back()">Back</a></button>
-  <% } else { %>
-    <h1>Recipe not found</h1>
-  <% } %>
+        <a href="javascript:history.back()" class="btn btn-dark mt-4">Back</a>
+      <% } else { %>
+        <h1>Recipe not found</h1>
+      <% } %>
+    </div>
   
-  <script>
-    $(document).ready(function() {
-      $('#loveit').on('click', function() {
-        var recipeId = '<%= recipe.id %>';
-        $.ajax({
-          url: recipeId + '/love/',
-          type: 'POST',
-          success: function(result) {
-            $('#loveit').text('You and ' + result + ' loved it!');
-            setTimeout(function() {
-              $('#loveit').text('Love it!');
-            }, 5000);
-          },
-          error: function(err) {
-            console.log(err);
-          }
+    <footer class="text-center mt-4 mb-4">
+      <p>What's In It? <i class="bi bi-cup-straw"></i> &copy; 2023</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+          // Initialize the tooltip
+          $('[data-toggle="tooltip"]').tooltip();
+          
+          // Add the click event listener
+          $('#loveit').on('click', function() {
+            var recipeId = '<%= recipe.id %>';
+            $.ajax({
+              url: recipeId + '/love/',
+              type: 'POST',
+              success: function(result) {
+                $('#loveit').attr('data-original-title', 'You and ' + result + ' others love it!').tooltip('show');
+                setTimeout(function() {
+                  $('#loveit').attr('data-original-title', 'Love it!<span id="loveit-count"></span>').tooltip('hide');
+                }, 5000);
+              },
+              error: function(err) {
+                console.log(err);
+              }
+            });
+          });
         });
-      });
-    });
-  </script>
-</body>
+      </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
 </html>

@@ -3,46 +3,88 @@
   <head>
     <meta charset="utf-8">
     <title>What's In It?</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+      #Filter-label {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
-    <h1>What's In It?</h1>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">What's In It? <i class="bi bi-cup-straw"></i></a>
+  <button class="navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse collapsed justify-content-center" id="navbarNav">
     <form action="/search" method="get">
-      <label for="q">Search:</label>
-      <input type="text" id="q" name="q" value="<%= q %>">
-      <br>
-      <label for="nameFilter">By Name only:</label>
-      <input type="text" id="nameFilter" name="nameFilter" value="<%= nameFilter %>">
-      <br>
-      <label for="ingredientFilter">By Ingredient only:</label>
-      <input type="text" id="ingredientFilter" name="ingredientFilter" value="<%= ingredientFilter %>">
-      <br>
-      <label for="alcoholicFilter">Contains Alcohol:</label>
-      <select id="alcoholicFilter" name="alcoholicFilter">
-        <option value="">All</option>
-        <option value="1" <%= alcoholicFilter === '1' ? 'selected' : '' %>>Yes</option>
-        <option value="0" <%= alcoholicFilter === '0' ? 'selected' : '' %>>No</option>
-      </select>
-      <br>
-      <button type="submit">Search</button>
-    </form>
-
-    <h1>Here are some of our recipes!</h1>
-    <% const randomRecipes = recipes.sort(() => Math.random() - 0.5).slice(0, 5); %>
-    <% randomRecipes.forEach(function(recipe) { %>
-      <div>
-        <h2><%= recipe.name %></h2>
-        <h3>What does it contain...?</h3>
-        <p><%= recipe.ingredients %></p>
-        <h3>How is it made...?</h3>
-        <p><%= recipe.instructions %></p>
-        <h3>Does it contain alcohol...?</h3>
-        <p><%= recipe.is_alcoholic === 1 ? 'Yes' : 'No' %></p>        
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="Filter" id="Filter-label">Search by:</label>
+          <input type="text" class="form-control" placeholder="Name, Ingredient, etc...">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="Filter" id="Filter-label">Search by:</label>
+          <input type="text" class="form-control" id="nameFilter" name="nameFilter" value="<%= nameFilter %>" placeholder="Name..">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="Filter" id="Filter-label">Search by:</label>
+          <input type="text" class="form-control" id="ingredientFilter" name="ingredientFilter" value="<%= ingredientFilter %>" placeholder="Ingredient...">
+        </div>
+        <div class="form-group col-md-2" id="alcoholicFilter-group">
+          <label for="Filter" id="Filter-label">With Alcohol:</label>
+          <div>
+            <select class="form-control" id="alcoholicFilter" name="alcoholicFilter">
+              <option value="">All</option>
+              <option value="1" <%= alcoholicFilter === '1' ? 'selected' : '' %>>Yes</option>
+              <option value="0" <%= alcoholicFilter === '0' ? 'selected' : '' %>>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-outline-success btn-block" type="submit">Search</button>
+        </div>
       </div>
-    <% }); %>
+    </form>
+  </div>
+</nav>
     
-    
+  <div class="container mt-4">
+    <div class="row">
+        <% const randomRecipes = recipes.sort(() => Math.random() - 0.5).slice(0, 5); %>
+        <% randomRecipes.forEach(function(recipe) { %>
+          <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <h2 class="card-title"><%= recipe.name %></h2>
+                <p class="card-text mt-2">Contains...</p>
+                <ul class="list-group">
+                  <li class="list-group-item"><%= recipe.ingredients %></li>
+                </ul>
+                <p class="card-text mt-2">Does it contain alcohol...? <strong><%= recipe.is_alcoholic === 1 ? 'Yes' : 'No' %></strong></p>
+                <a href="/recipes/<%= recipe.id %>" class="btn btn-dark">View recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
 
-    <a href="/create"><button>Create a new Recipe</button></a>
+    </div>
+
+    <div class="container mt-4 align-self-center">
+      <a href="/create"><button type="button" class="btn btn-outline-success btn-block">Create a new recipe!</button></a>
+    </div>
+
+    <footer class="text-center mt-4 mb-4">
+      <p>What's In It? <i class="bi bi-cup-straw"></i> &copy; 2023</p>
+    </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>

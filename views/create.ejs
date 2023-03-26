@@ -2,33 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>What's In It | Create a Recipe</title>
+  <title>Create a Recipe | What's In It</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <h1>Create a Recipe</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">What's In It?</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/create">Create Recipe</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-  <form action="/create" method="POST">
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" name="name" required>
-    </div>
-    <div>
-      <label for="ingredients">Ingredients:</label>
-      <textarea name="ingredients" required></textarea>
-    </div>
-    <div>
-      <label for="instructions">Instructions:</label>
-      <textarea name="instructions" required></textarea>
-    </div>
-    <div>
-      <label for="is_alcoholic">Contains Alcohol:</label>
-      <input type="checkbox" name="is_alcoholic">
-    </div>
-    <div>
-      <button type="submit">Create Recipe</button>
-    </div>
-  </form>
+  <div class="container mt-4">
+    <h1 class="text-center">Create a Recipe</h1>
 
-  <button><a href="javascript:history.back()">Back</a></button>
+    <form action="/create" method="POST">
+      <div class="form-group">
+        <label for="name">Drink's Name:</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="ingredients">Ingredients:</label>
+        <textarea name="ingredients" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="instructions">Instructions:</label>
+        <textarea name="instructions" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" name="is_alcoholic" class="form-check-input">
+          <label for="is_alcoholic" class="form-check-label">Contains Alcohol</label>
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-outline-success btn-block">Create Recipe</button>
+      </div>
+    </form>
+
+    <hr>
+
+    <div class="text-center">
+      <button class="btn btn-dark"><a href="javascript:history.back()" style="color: white;">Back</a></button>
+    </div>
+
+    <hr>
+
+    <footer class="text-center mt-4 mb-4">
+      <p>What's In It? <i class="bi bi-cup-straw"></i> &copy; 2023</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

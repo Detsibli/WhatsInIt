@@ -50,13 +50,6 @@ app.get('/', (req, res) => {
   });
 });
 
-
-
-
-app.get('/create', (req, res) => {
-  res.render('create');
-});
-
 app.get('/example', (req, res) => {
   res.render('example');
 });
