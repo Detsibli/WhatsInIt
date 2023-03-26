@@ -15,43 +15,43 @@
     </style>
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">What's In It? <i class="bi bi-cup-straw"></i></a>
-  <button class="navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse collapsed justify-content-center" id="navbarNav">
-    <form action="/search" method="get">
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="Filter" id="Filter-label">Search by:</label>
-          <input type="text" class="form-control" placeholder="Name, Ingredient, etc...">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">What's In It? <i class="bi bi-cup-straw"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form action="/search" method="get" class="ml-auto">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="Filter" id="Filter-label">Search by:</label>
+                <input type="text" class="form-control" id="q" name="q" value="<%= q %>" placeholder="Name, Ingredient, etc...">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="Filter" id="Filter-label">Search by:</label>
+                <input type="text" class="form-control" id="nameFilter" name="nameFilter" value="<%= nameFilter %>" placeholder="Name..">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="Filter" id="Filter-label">Search by:</label>
+                <input type="text" class="form-control" id="ingredientFilter" name="ingredientFilter" value="<%= ingredientFilter %>" placeholder="Ingredient...">
+              </div>
+              <div class="form-group col-md-2" id="alcoholicFilter-group">
+                <label for="Filter" id="Filter-label">With Alcohol:</label>
+                <div>
+                  <select class="form-control" id="alcoholicFilter" name="alcoholicFilter">
+                    <option value="">All</option>
+                    <option value="1" <%= alcoholicFilter === '1' ? 'selected' : '' %>>Yes</option>
+                    <option value="0" <%= alcoholicFilter === '0' ? 'selected' : '' %>>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-outline-success btn-block" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="form-group col-md-3">
-          <label for="Filter" id="Filter-label">Search by:</label>
-          <input type="text" class="form-control" id="nameFilter" name="nameFilter" value="<%= nameFilter %>" placeholder="Name..">
-        </div>
-        <div class="form-group col-md-3">
-          <label for="Filter" id="Filter-label">Search by:</label>
-          <input type="text" class="form-control" id="ingredientFilter" name="ingredientFilter" value="<%= ingredientFilter %>" placeholder="Ingredient...">
-        </div>
-        <div class="form-group col-md-2" id="alcoholicFilter-group">
-          <label for="Filter" id="Filter-label">With Alcohol:</label>
-          <div>
-            <select class="form-control" id="alcoholicFilter" name="alcoholicFilter">
-              <option value="">All</option>
-              <option value="1" <%= alcoholicFilter === '1' ? 'selected' : '' %>>Yes</option>
-              <option value="0" <%= alcoholicFilter === '0' ? 'selected' : '' %>>No</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group col-md-12">
-          <button type="submit" class="btn btn-outline-success btn-block" type="submit">Search</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</nav>
+      </nav>
     
   <div class="container mt-4">
     <div class="row">
@@ -78,6 +78,8 @@
     <div class="container mt-4 align-self-center">
       <a href="/create"><button type="button" class="btn btn-outline-success btn-block">Create a new recipe!</button></a>
     </div>
+
+    <hr>
 
     <footer class="text-center mt-4 mb-4">
       <p>What's In It? <i class="bi bi-cup-straw"></i> &copy; 2023</p>

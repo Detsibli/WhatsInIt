@@ -54,6 +54,11 @@ app.get('/example', (req, res) => {
   res.render('example');
 });
 
+app.get('/create', (req, res) => {
+  res.render('create');
+});
+
+
 app.post('/create', (req, res) => {
   const { name, ingredients, instructions, is_alcoholic } = req.body;
   db.run('INSERT INTO recipes (name, ingredients, instructions, is_alcoholic) VALUES (?, ?, ?, ?)', [name, ingredients, instructions, is_alcoholic ? 1 : 0], (err) => {

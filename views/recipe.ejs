@@ -41,7 +41,16 @@
         <h1>Recipe not found</h1>
       <% } %>
     </div>
+
+    <br>
   
+    <div class="text-center">
+      <a href="mailto:?subject=Check out this recipe&amp;body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at recipeLink " class="btn btn-outline-warning btn-sm"><i class="bi bi-envelope"></i> Share via Email</a>
+      <a href="sms:?body=Hey, I found this great recipe I thought you might like:%0D%0A%0D%0ARecipe name: <%= recipe.name %>%0D%0AIngredients: <%= recipe.ingredients %>%0D%0AInstructions: <%= recipe.instructions %>%0D%0A%0D%0AYou can find the full recipe at recipeLink " class="btn btn-outline-warning btn-sm"><i class="bi bi-chat-dots"></i> Share via SMS</a>
+    </div>
+
+    <hr>
+
     <footer class="text-center mt-4 mb-4">
       <p>What's In It? <i class="bi bi-cup-straw"></i> &copy; 2023</p>
     </footer>
@@ -69,6 +78,10 @@
             });
           });
         });
+      </script>
+
+      <script>
+        var recipeLink = window.location.origin + '/recipes/' + recipeId;
       </script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
